@@ -33,3 +33,37 @@ public:
         return false;
     }
 };
+
+//牛客网刷题：
+class Solution {
+public:
+    bool Find(vector<vector<int> > array,int target) {
+       	int rows = array.size();
+        int columns = array[0].size();
+
+        //二位数组实际相当于一个连续排布的一维数组。
+    	if(rows>0 &&columns > 0)
+        {
+            int row = 0;
+            int column = columns - 1;
+            while(row < rows && column >= 0)
+            {
+                //3种情况：相等则找到相同数，返回ture
+                if(array[row][column] == target)
+                {
+                  	return true;   
+                }
+                //比较的是右上角的数，若该数大于查找数则删除当列
+                else if(array[row][column] > target){
+                    --column;
+                }
+                //若当前数小于查找数，则删除当前行。
+                else{
+                    ++row;
+                }
+               
+            }
+        }
+        return false;
+    }
+};
