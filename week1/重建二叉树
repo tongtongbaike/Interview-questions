@@ -1,0 +1,38 @@
+题目：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设
+输入的前序遍历和中序遍历的结果中都不含重复的数字。
+例如：
+  前序：{1，2,4，7，3,5，6,8}
+  中序：{4,7,2,1,5,3,8,6}
+
+则重建出二叉树，并返回他们的头结点，二叉树的头结点定义如下：
+struct BinaryTreeNode
+{
+  int m_nvalue;
+  BinaryTreeNode* m_pLeft;
+  BinaryTreeNode* m_pRight; 
+};
+
+BinaryTreeNode* ConstructTree(int* preIndex,int *inIndex,int length)
+{
+    assert(preIndex && inIndex);
+    int count  = 0;
+    int* curInIndex = inIndex;
+    while(*preIndex != *curInIndex && count < length)
+    {
+       ++curInIndex；
+       ++count;
+    }
+    BinaryTreeNode* root = new BinaryTreeNode;
+    root->m_nvalue = *preIndex;
+    root->m_pLeft = root->m_pRight = NULL;
+    if(count == 0)
+    {
+       return root;
+    }
+    if(length > 0)
+    {
+      root->m_pLeft = ConstructTree(preIndex+1,inIndex,count);
+      root->m_pRight = ConstructTree(preIndex+count+1,inIndex+count +1,length -count -1);
+    }
+    return root;
+}

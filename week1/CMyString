@@ -1,0 +1,36 @@
+题目：如下类型CMyString 的声明，请为该类型添加赋值运算符函数：
+class CMyString
+{
+public:
+  CMyString(char *pData = NULL);
+  CMyString(const CMyString str);
+  ~CMyString(void);
+
+private:
+  char* m_pData;
+}
+
+CMyString& CMyString::operator = (const CMyString &str)
+{
+  if(str != this)
+  {
+    CMyString strTemp(str);
+    char *temp = StrTemp.m_pData;
+    strTemp.m_pData = m_pData;
+    m_pData = temp;
+  }
+  return *this;
+}
+
+//2
+CMyString& CMyString::operator = (const CMyString str)
+{
+  if(str.m_pData != this->m_pData)
+  {
+    char *temp = str.m_pData;
+    str.m_pData = m_pData;
+    m_pData = temp;
+  }
+  return *this;
+}
+

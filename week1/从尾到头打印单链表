@@ -1,0 +1,27 @@
+1//从尾到头打印单链表：
+   // 这个题十分的简单，在前面我们也从高位到低位打印一个数字:
+    //同样的。我们也可以用递归的方式来实现这个问题：
+    //思路简单，直接来看一下代码：
+    
+    struct LinkNode
+    {
+        dayaType _data;
+        PLinkNode* _next;
+    }LinkNode,* PLinkNode;
+    
+    void PrintFailToHead(PLinkNode pHead)
+    {
+                 if(pHead != NULL)
+                {
+                            PrintFailToHead(pHead->_next);
+                            printf( "%d->",pHead->_data);
+     
+                }
+                 if(pHead == NULL)
+                {
+                            printf( "NULL->");
+                             return;
+                }
+                 return;
+    }
+    // ok
